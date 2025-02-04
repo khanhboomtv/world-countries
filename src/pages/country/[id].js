@@ -64,21 +64,21 @@ const Country = ({ country }) => {
             <div className={styles.details_panel_row}>
               <div className={styles.details_panel_label}>Languages</div>
               <div className={styles.details_panel_value}>
-                {Object.values(country.languages).join(", ")}
+                {typeof country['languages'] !== 'undefined' ? Object.values(country.languages).join(", ") : 'N/A'}
               </div>
             </div>
 
             <div className={styles.details_panel_row}>
               <div className={styles.details_panel_label}>Currencies</div>
               <div className={styles.details_panel_value}>
-                {Object.values(country.currencies).map(({ name }) => name).join(", ")}
+                {typeof country['currencies'] !== 'undefined' ? Object.values(country.currencies).map(({ name }) => name).join(", ") : 'N/A'}
               </div>
             </div>
 
             <div className={styles.details_panel_row}>
               <div className={styles.details_panel_label}>Native name</div>
               <div className={styles.details_panel_value}>
-                {Object.values(country.name.nativeName).length > 0 ? Object.values(country.name.nativeName)[0].common : 'N/A'}
+                {country.name.nativeName && Object.values(country.name.nativeName).length > 0 ? Object.values(country.name.nativeName)[0].common : country.name.common ? country.name.common : 'N/A'}
               </div>
             </div>
 
